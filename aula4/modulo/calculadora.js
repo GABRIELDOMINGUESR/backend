@@ -41,15 +41,15 @@ function calcular(numero1, numero2, tipoCalculo) {
 
     switch (operacao) {
         case 'SOMAR':
-            resultado = valor1 + valor2
+            resultado = somar(valor1, valor2)
             break;
 
         case 'SUBITRAIR':
-            resultado = valor1 - valor2
+            resultado = subitrair(valor1, valor2)
             break;
 
         case 'MULTIPLICAR':
-            resultado = valor1 * valor2
+            resultado = multiplicar(valor1, valor2)
             break;
 
         case 'DIVIDIR':
@@ -61,7 +61,7 @@ function calcular(numero1, numero2, tipoCalculo) {
                 status = false
 
             } else
-                resultado = valor1 / valor2
+                resultado = dividir(valor1, valor2)
             break;
 
             //Similar ao else final de uma estrutura baseada em if / else (Se nenhuma das opções for verdadeira, sempre passará pelo default// )
@@ -84,6 +84,15 @@ function calcular(numero1, numero2, tipoCalculo) {
 // const calcular = function(numero1, numero2, tipoCalculo){
 
 // }
+
+//Forma 3 de criar uma função
+const somar = (valor1, valor2) => Number(valor1) + Number(valor2);
+
+const subitrair = (valor1, valor2) => Number(valor1) - Number(valor2);
+
+const multiplicar = (valor1, valor2) => Number(valor1) * Number(valor2);
+
+const dividir = (valor1, valor2) => Number(valor1) / Number(valor2);
 
 
 //exporta  uma função para ser ultilizada em outro arquivo
