@@ -44,7 +44,7 @@ entradaDados.question('Valor: \n', function(numero1) {
             if (valor1 == '' || valor2 == '' || operacao == '') {
 
                 console.log('Não é possivel calcular sem preencher os dados.');
-                entradaDados.close();
+                status = false
 
                 //Validaçaõ para verificar se os dados são numeros
                 //Podemos utiçizar (isNaN ou typeof) 
@@ -57,12 +57,18 @@ entradaDados.question('Valor: \n', function(numero1) {
 
             } else if (isNaN(valor1) || isNaN(valor2)) {
                 console.log('ERRO não é possivel calcular sem a entrada de numeros')
-                entradaDados.close();
+                status = false
             } else {
 
                 //chama a função para calcular, encaminhar os dados para o calculo 
                 resultado = matematica.calcular(valor1, valor2, operacao);
-                console.log(resultado);
+
+                //validar se o retorno da função é verdadeiro ou falso
+                if (resultado == false && typeof(resultado) == 'Boolean')
+                    entradaDados.close
+
+                else
+                    console.log(resultado);
 
             }
         })
