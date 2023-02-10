@@ -15,29 +15,6 @@ function calcular(numero1, numero2, tipoCalculo) {
     let resultado;
     let estatus = true; // Variavel Boolean para identificar o estatus do calculo
 
-    // if (operacao == 'SOMAR')
-    //     resultado = valor1 + valor2
-    // else if (operacao == 'SUBITRAIR')
-    //     resultado = valor1 - valor2
-    // else if (operacao == 'MULTIPLICAR')
-    //     resultado = valor1 * valor2
-
-    // //Validar a divisão por 0
-    // else if (operacao == 'DIVIDIR') {
-    //     if (valor2 == 0) {
-
-    //         console.log('ERRO: não é possivel dividir por 0')
-    //             //entradaDados.close();
-    //         status = false
-
-    //     } else
-    //         resultado = valor1 / valor2
-
-    // } else {
-    //     console.log('ERRO: Aperação informada é invalida. Confira a sua entrada')
-    //         //entradaDados.close(); //Fecha o objeto de entrada de dados (encerra o programa)
-    //     status = false
-    // }
 
     switch (operacao) {
         case 'SOMAR':
@@ -66,7 +43,7 @@ function calcular(numero1, numero2, tipoCalculo) {
 
             //Similar ao else final de uma estrutura baseada em if / else (Se nenhuma das opções for verdadeira, sempre passará pelo default// )
         default:
-            console.log('ERRO: Aperação informada é invalida. Confira a sua entrada')
+            console.log('ERRO: Operação informada é invalida. Confira a sua entrada')
                 //entradaDados.close(); //Fecha o objeto de entrada de dados (encerra o programa)
             status = false
     }

@@ -127,24 +127,17 @@ entradaDados.question('Digite o  nome do aluno \n', function(nome) {
                     {
                         console.log('ERRO É necessário digitar numeros nas entradas.')
 
-                        /*/Validação de entrada de dados entre 0 e 10
-                        if () {
-
-                        } else {
-                           
-                        }
-                            */
                     } else if (
 
-                        primeiraNota < 0 || primeiraNota > 10 ||
-                        segundaNota < 0 || segundaNota > 10 ||
-                        terceiraNota < 0 || terceiraNota > 10 ||
-                        quartaNota < 0 || quartaNota > 10) {
+                        primeiraNota < 0 || primeiraNota > 100 ||
+                        segundaNota < 0 || segundaNota > 100 ||
+                        terceiraNota < 0 || terceiraNota > 100 ||
+                        quartaNota < 0 || quartaNota > 100) {
 
                         console.log('ERRO: sistema só aceita notas de 0 a 10. ');
                     } else {
 
-                        if (media >= 7) {
+                        if (media >= 70) {
                             console.log('Aluno APROVADO');
 
                         } else {
