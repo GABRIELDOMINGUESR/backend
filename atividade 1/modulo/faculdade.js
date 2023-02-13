@@ -7,7 +7,7 @@ function media(nota1, nota2, nota3, nota4) {
 
     let media = (Number(primeiraNota) + Number(segundaNota) + Number(terceiraNota) + Number(quartaNota)) / 4
     let resultado;
-    let status = true;
+
 
     return media;
 
@@ -16,9 +16,37 @@ function media(nota1, nota2, nota3, nota4) {
 
 }
 
+function mediaExame(notaDoExame, mediaDoAluno) {
 
 
+    let exame = notaDoExame;
+    let media = mediaDoAluno;
+
+
+    let mediaExame = (Number(mediaDoAluno) + Number(mediaDoAluno)) / 2
+
+    return mediaExame;
+
+}
+
+function statusAluno(aprovado, reporvado) {
+    let statusBom = aprovado;
+    let statusRuim = reporvado;
+
+
+    if (media > 70) {
+        return 'Aprovado'
+
+    } else {
+        return 'Reprovado'
+    }
+
+
+
+}
 
 module.exports = {
-    media
+    media,
+    mediaExame,
+    statusAluno
 }

@@ -12,6 +12,7 @@ var sistemaMedia = require('./modulo/faculdade.js');
 // Bibliotea para entrada de dados
 var readline = require('readline');
 const { moveMessagePortToContext } = require('worker_threads');
+const { mediaExame } = require('./modulo/faculdade.js');
 
 
 // Criamos um objeto para manipular a entrada de dados via teclado
@@ -26,7 +27,7 @@ console.log('\n************************INFORMAÇÃO ALUNO***********************
 entradaDados.question('Digite o nome do aluno(a): \n', function(nome) {
     let nomeAluno = nome;
 
-    entradaDados.question('Digite o sexo do aluno(a): \n', function(sexoAluno) {
+    entradaDados.question('Digite o sexo do aluno(a) [F para Feminino] e [N para masculino]: \n', function(sexoAluno) {
         let sexoA = sexoAluno;
 
         console.log('\n*************************PROFESSOR***************************** \n ')
@@ -34,11 +35,11 @@ entradaDados.question('Digite o nome do aluno(a): \n', function(nome) {
         entradaDados.question('Digite o nome do Professor(a): \n ', function(nomeDoProfessor) {
             let nomeProf = nomeDoProfessor;
 
-            entradaDados.question('Digite o sexo do Professor(a): \n ', function(sexoDoProfessor) {
+            entradaDados.question('Digite o sexo do Professor(a) [F para Feminino] e [N para masculino]: \n ', function(sexoDoProfessor) {
                 let sexoProf = sexoDoProfessor;
 
                 console.log('\n*******************************Curso*************************************')
-                entradaDados.question('Qual o curso:', function(curso) {
+                entradaDados.question('Qual o curso: \n', function(curso) {
                     let cursoFacul = curso
 
                     console.log('\n********************MATÉRIA*********************************')
@@ -88,11 +89,41 @@ entradaDados.question('Digite o nome do aluno(a): \n', function(nome) {
 
                                             resultado = sistemaMedia.media(nota1, nota2, nota3, nota4)
 
-                                            if (media >= 70) {
-                                                console.log('Aluno APROVADO');
+                                            if (resultado > 50 && resultado < 69) {
+                                                console.log('******************Aluno necessita de exame!*****************************\n')
+                                                entradaDados.question('Digite a nota do exame: ', function(notaDoexameDigitada) {
 
-                                            } else if (media > 50 && media < 69) {
-                                                console.log('Aluno Nessecita de Exame')
+                                                        let digitadaNotaDoExame = Number(notaDoexameDigitada);
+
+                                                        let resultadoExameFinalEnd = sistemaMedia.mediaExame(digitadaNotaDoExame, resultado)
+
+                                                        console.log(resultadoExameFinalEnd)
+
+                                                    })
+                                                    // } else if (resultado < 50) {
+                                                    //     console.log('Aluno REPROVADO')
+
+                                            } else {
+                                                entradaDados.question('Digite a nota do exame: \n', function(exame) {
+
+                                                    let notaComMedia = exame;
+
+
+                                                    mediaExame = sistemaMedia.mediaExame(notaComMedia, resultado)
+                                                    console.log(mediaExame);
+
+                                                    console.log('\n ****************Relatorio*********************')
+
+
+                                                    console.log(`O aluno ${nomeAluno} Foi ${statusAluno} com o Professor ${nomeDoProfessor} no curso de ${curso} `)
+
+
+
+
+
+
+
+                                                })
                                             }
                                         }
 
