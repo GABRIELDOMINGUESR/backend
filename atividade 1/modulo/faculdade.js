@@ -6,7 +6,6 @@ function media(nota1, nota2, nota3, nota4) {
     let quartaNota = Number(nota4)
 
     let media = (Number(primeiraNota) + Number(segundaNota) + Number(terceiraNota) + Number(quartaNota)) / 4
-    let resultado;
 
 
     return media;
@@ -18,35 +17,62 @@ function media(nota1, nota2, nota3, nota4) {
 
 function mediaExame(notaDoExame, mediaDoAluno) {
 
+    let media = Number(mediaDoAluno);
+    let exame = Number(notaDoExame);
 
-    let exame = notaDoExame;
-    let media = mediaDoAluno;
 
 
-    let mediaExame = (Number(mediaDoAluno) + Number(mediaDoAluno)) / 2
+    let exameMedia = (notaDoExame + mediaDoAluno) / 2
 
-    return mediaExame;
+    return exameMedia;
 
 }
 
-function statusAluno(aprovado, reporvado) {
-    let statusBom = aprovado;
-    let statusRuim = reporvado;
+function statusAluno(resultado, genero) {
 
+    let notaFinal = resultado
+    let generO = genero
 
-    if (media > 70) {
-        return 'Aprovado'
-
+    if (notaFinal >= 60) {
+        if (generO == 'Masculino') {
+            return 'APROVADO'
+        } else {
+            return 'APROVADA'
+        }
     } else {
-        return 'Reprovado'
+        if (generO == Masculino) {
+            return 'REPROVADO'
+        } else {
+            return 'REPROVADA'
+        }
+
     }
+}
 
+function validarStatuSemExame(resultado, genero) {
 
+    let notaFinal = resultado
+    let generO = genero
 
+    if (notaFinal >= 70) {
+        if (generO == 'Masculino') {
+            return 'APROVADO'
+        } else {
+            return 'APROVADA'
+        }
+    } else if (resultado < 50) {
+        if (generO == Masculino) {
+            return 'REPROVADO'
+        } else {
+            return 'REPROVADA'
+        }
+
+    }
 }
 
 module.exports = {
     media,
     mediaExame,
-    statusAluno
+    statusAluno,
+    validarStatuSemExame
 }
