@@ -127,17 +127,15 @@ entradaDados.question('Digite o nome do aluno(a): \n', function(nome) {
 
                                                                 let resultadoExameFinalEnd = sistemaMedia.mediaExame(digitadaNotaDoExame, resultadoFinal2)
 
-                                                                // console.log(resultadoExameFinalEnd)
+                                                        
 
                                                             })
-                                                            // } else if (resultado < 50) {
-                                                            //     console.log('Aluno REPROVADO')
 
                                                     } else {
-                                                        // mediaExame = sistemaMedia.mediaExame(notaComMedia, resultadoFinal2)
-                                                        // console.log(mediaExame);
 
-                                                        console.log('deu certo')
+                                                        let alunostatus = sistemaMedia.statusAluno(resultadoFinal2,genero)
+                                                        console.log(`O aluno ${nomeAluno} foi ${}`)
+                                                        
 
 
 
