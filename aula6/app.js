@@ -1,83 +1,184 @@
-/**********************************************************
+/***********************************************************************
  * Objetivo: Trabalhando com Array
- * Data:  24/02/2022
- * Autor: Gabriel Domingues
- *  Versão
- ************************************************************/
+ * Data: 24/02/2023
+ * Autor: Marcel
+ * Versão: 1.0
+ **********************************************************************/
 
-// [] - siguinifica que estamos manipulando um Array de dados
-// {} - siguinifica que estamos manipulando um formato Json de dados
+// [ ] - significa que estamos manipulando um array de dados
+// { } - significa que estamos manipulando um formato JSON de dados
 
-const listaNomes = ['Gabriel', 'Maria', 'Luid', 'Carlos']
+const listaNomes = ['José', 'Maria', 'Luiz', 'Carlos', 'Luizinho', 'Zezinho'];
+const listaProdutos = ['Teclado', 'Mouse', 'Monitor', 'Computador', 'Fone', 'Impressora', 'Scanner', 'WebCam'];
+const listaProdutosJSON = {};
 
-//Verifica o tipo de dados do enmento listaNomes
-// console.log(typeof(listaDeNomes))
+//Forma ERRADA de manipular um conjunto de dados
+// const nome1 = 'José';
+// const nome2 = 'Maria';
+// const nome3 = 'Luiz';
 
-// verifica o tipo de dados de um indice (item) do array
-console.log(typeof(listaNomes[3]))
+const manipulandoElementos = function() {
+    //Veririfica o tipo de dados do elemento listaNomes    
+    //console.log(typeof(listaNomes));
 
-//Exibe todos os elementos de um array
-console.log(listaNomes)
+    //Veririfica o tipo de dados de um indice (item) do array     
+    console.log(typeof(listaNomes[1]));
 
-//Exibe apenas um elemento conforme o seu indice
-console.log(listaNomes[0])
+    //Exibe todos os elementos do array
+    console.log(listaNomes);
+
+    //Exibe apenas um elemento conforme o seu indice
+    console.log(listaNomes[0]);
+
+    console.log('O nome do usuário é ' + listaNomes[0]);
+    console.log(`O nome do usuário é ${listaNomes[1]}`);
+
+    //length - permite contar quantos elementos tem em um array
+    console.log(`A qtde de itens do meu array é: ${listaNomes.length}`);
+
+    //Percorrendo um array usando While
+    let cont = 0; //start
+    let qtdeItens = listaNomes.length; //stop
+
+    console.log('Exibindo dados do array com While');
+    while (cont < qtdeItens) {
+        console.log(`Nome: ${listaNomes[cont]}`);
+        cont += 1;
+    }
+
+    //Percorrendo um array usando FOR
+    console.log('Exibindo dados do array com FOR');
+    let qtdeNomes = listaNomes.length; //stop
+
+    for (let cont = 0; cont < qtdeNomes; cont++)
+        console.log(`Nome: ${listaNomes[cont]}`);
 
 
-console.log('Nome do aluno é:' + listaNomes[0])
 
-console.log(`Nome do aluno é:' ${listaNomes[1]}`)
+    //Percorrendo um array usando FOREACH
+    console.log('Exibindo dados do array com FOREACH');
 
-//length - Permite contar quantos elementos tem em um array
-console.log(`A Quantidade do meu array é: ${listaNomes.length}`)
-console.log('\n**********************************************************\n')
-    //Percorrendo um array usando while
+    //forEach é um metodo de um objeto array, que retorna uma função de call back
+    listaNomes.forEach(function(nome) {
+        console.log(`Nome: ${nome}`)
+    });
 
-let cont = 0 //start
-let qtItens = listaNomes.length //stop
 
-console.log('Exibindo dados do Array com while')
-while (cont < qtItens) {
-    console.log(`Nome: ${listaNomes[cont]}`)
-    cont += 1
-}
+    //Adicionando elementos novos no ARRAY
+    //Push - adiciona elementos no final do array
+    listaNomes.push('Alexandre');
+    listaNomes.push('Marcos', 'Lucas');
+    console.log(listaNomes);
 
-console.log('\n**********************************************************\n')
+    //unshift - adiciona elementos no inicio do array (ele muda a
+    // posição de todos os próximos elementos)
+    listaNomes.unshift('Ana Maria', 'Leonardo');
+    console.log(listaNomes);
 
-//Percorrendo um array com FOR
+    //Removendo elementos do Array
+    //pop - remove o ultimo elemento do array
+    listaNomes.pop();
+    console.log(listaNomes);
 
-console.log('Exibindo dados do array com For')
-let qtdeNomes = listaNomes.length
-for (let cont = 0; cont < qtdeNomes; cont++)
-    console.log(`Nome: ${listaNomes[cont]}`)
+    //shift - remove o primeiro elemento do array (reorganiza todos os
+    //próximos elementos)
+    listaNomes.shift();
+    console.log(listaNomes);
 
-console.log('\n**********************************************************\n')
+};
 
-//Percorrendo um array com FOREACH
-console.log('Exibindo dados do array com FOREACH')
+const filtrandoElementos = function() {
 
-//ForEach é um metodo de um objeto array que retorna uma função de call-back
-listaNomes.forEach(function(nome) {
+    //indexof - permite buscar elementos dentro de um array
+    // se o retorno for -1 (não encontrou o item)
+    // se o retorno for maior ou igual 0 (item encontrado)
+    console.log(listaProdutos);
+    //console.log(listaProdutos.indexOf('Fone de Ouvido'));
 
-    console.log(`Nome: ${nome}`)
+    if (listaProdutos.indexOf('Monitor') >= 0)
+        console.log('O item pesquisado foi encontrado.');
+    else
+        console.log('Item não encontrado.');
 
-})
-console.log('\n**********************************************************\n')
+    //slice - permite criar uma cópia do array, podendo selecionar os itens
+    //const novosProdutos = listaProdutos.slice();
+    const novosProdutos = listaProdutos.slice(0, 3);
 
-//Adicionando elementos novos no Array
+    console.log(listaProdutos);
+    console.log(novosProdutos);
 
-//Push - Adiciona elementos no final do array
-listaNomes.push('Alexandre')
+};
 
-console.log(listaNomes)
+const removerElemento = function(array, nomeItem) {
+    //Cria uma cópia do Array
+    let novaLista = array.slice();
 
-//unshift - Adiciona elementos no inicio do Array (ele muda todos os proximos elementos)
-listaNomes.unshift('Antonio')
-console.log(listaNomes)
+    let nome = nomeItem;
+    let indice = novaLista.indexOf(nome);
+    let status;
 
-console.log('\n**********************************************************\n')
+    //splice - permite remover um elemento do array, pelo indice 
+    //    (não esquecer de passar a qtde de itens a ser removido)
+    if (indice >= 0) {
+        novaLista.splice(indice, 1);
+        status = true;
+    } else {
+        status = false;
+    }
 
-//Removendo elementos do Array
-//pop - remove o ultimo elemento do array
+    if (status)
+        return novaLista;
+    else
+        return status;
+};
 
-listaNomes.pop()
-console.log(listaNomes)
+const listagemProdutos = function() {
+    let listProdutosJSON = {}
+
+    let listProdutos = [
+        { nome: 'Teclado', valor: 'R$ ' + 200, quantidade: 50 },
+        { nome: 'Monitor DELL', valor: 'R$ ' + 1000, quantidade: 100 },
+        { nome: 'Mouse', valor: 'R$ ' + 100, quantidade: 350 },
+    ]
+
+    let listCores = ['Branco', 'Preto', 'Cinza']
+    let listTipoTeclado = ['Mecânico', 'Semi-mecanico', 'Menbrana']
+    let listTipoMonitor = ['LCD', 'FULL-HD', 'OLED']
+
+    listProdutos[0].cores = listCores;
+    listProdutos[0].tipo = listTipoTeclado;
+
+    listProdutos[1].cores = listCores;
+    listProdutos[1].tipo = listTipoMonitor;
+
+    listProdutos[2].cores = listCores;
+
+    listProdutosJSON.produtos = listProdutos;
+    // console.log(listProdutosJSON)
+    // console.log('\nnome: ' + listProdutosJSON.produtos[1].nome)
+    // console.log('\nValor: ' + listProdutosJSON.produtos[1].valor)
+    // console.log('\nCor: ' + listProdutosJSON.produtos[1].cores[1])
+
+    console.log('***************************************************');
+
+    listProdutosJSON.produtos.forEach(function(dadosProduto) {
+        console.log('Nome: ' + dadosProduto.nome);
+        console.log('Valor: ' + dadosProduto.valor);
+
+        if (dadosProduto != undefined) {
+            dadosProduto.cores.forEach(function(dadosCores) {
+                console.log('***' + dadosCores);
+            })
+
+        }
+        if (dadosProduto.tipo != undefined) {
+            dadosProduto.tipo.forEach(function(dadosTipo) {
+                console.log('****' + dadosTipo);
+            })
+        }
+    })
+};
+
+listagemProdutos();
+// console.log(removerElemento(listaNomes, 'Luiz'));
+//console.log(listaProdutos);
