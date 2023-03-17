@@ -56,11 +56,8 @@ app.use((request, response, next) => {
     next()
 });
 
-
-//endPoints
-
 //endPoint para listar os estados
-app.get('/listaDeEstados', cors(), async function(request, response, next) {
+app.get('/v1/senai/listaDeEstados', cors(), async function(request, response, next) {
 
 
 
@@ -80,7 +77,7 @@ app.get('/listaDeEstados', cors(), async function(request, response, next) {
 });
 
 //endPoint lista as caracteristicas do estado pela sigla
-app.get('/estado/sigla/:uf', cors(), async function(request, response, next) {
+app.get('/v1/senai/estado/sigla/:uf', cors(), async function(request, response, next) {
     // :uf É uma variave que sera utilizada para passagem de valores, na url da requisição
 
     //Recebe o valor da variavel uf que sera encaminhada na URL da requisição
@@ -113,8 +110,8 @@ app.get('/estado/sigla/:uf', cors(), async function(request, response, next) {
 
 })
 
-
-app.get('/listaDeCapital', cors(), async function(request, response, next) {
+//endPoint lista as caracteristicas da Capital pelo estado
+app.get('/v1/senai/listaDeCapital', cors(), async function(request, response, next) {
     let siglaCapital = request.params.uf
     let statusCode
     let dadosCapital = {}
@@ -140,34 +137,88 @@ app.get('/listaDeCapital', cors(), async function(request, response, next) {
 
 })
 
+//endPoint lista as caracteristicas do estado pela sigla
+app.get('/v1/senai/regiaoEstado/:regioes', cors(), async function(request, response, next) {
+    let regiaoEstado = request.params.regioes
+    let statusCode
+    let dadosEstado = {}
+
+    if (regiaoEstado == '' || regiaoEstado == undefined || !isNaN(regiaoEstado)) {
+        statusCode = 400
+        dadosEstado.message = "Não é possivel processar a requisição"
+    } else {
+        let regiao = estadosCidades.getEstadosRegiao(regiaoEstado)
+
+        if (regiao) {
+            statusCode = 200
+            dadosEstado = regiao
+        } else {
+            statusCode = 404
+            dadosEstado.message = "Não é possivel processar a requisição"
+
+        }
+    }
+
+    response.status(statusCode)
+    response.json(dadosEstado)
 
 
+})
+
+app.get('/v1/senai/capitalPais', cors(), async function(request, response, next) {
 
 
+    let statusCode
+    let capitalPais = {}
+
+    if (capitalPais == '' || capitalPais == undefined || !isNaN(capitalPais)) {
+        statusCode = 400
+        capitalPais.message = "Não é possivel processar a requisição"
+    } else {
+        let paisCapital = estadosCidades.getCapitalPais()
+
+        if (paisCapital) {
+            statusCode = 200
+            capitalPais = paisCapital
+        } else {
+            statusCode = 404
+            capitalPais.message = "Não é possivel processar a requisição"
+
+        }
+    }
+
+    response.status(statusCode)
+    response.json(capitalPais)
+
+})
+
+app.get('/v1/senai/cidadesEstado', cors(), async function(request, response, next) {
+
+    let cidadesEstados = request.query.uf
+    let statusCode
+    let estadosCidade = {}
+
+    if (cidadesEstados == '' || cidadesEstados == undefined || !isNaN(cidadesEstados)) {
+        statusCode = 400
+        estadosCidade.message = "Não é possivel processar a requisição"
+    } else {
+        let cidadesPorEstados = estadosCidades.getCidades(cidadesEstados)
+
+        if (cidadesPorEstados) {
+            statusCode = 200
+            estadosCidade = cidadesPorEstados
+        } else {
+            statusCode = 404
+            estadosCidade.message = "Não é possivel processar a requisição"
+
+        }
+    }
+
+    response.status(statusCode)
+    response.json(estadosCidade)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+})
 
 
 

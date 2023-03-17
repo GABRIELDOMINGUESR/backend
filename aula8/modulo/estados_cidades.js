@@ -22539,7 +22539,7 @@ let getEstadosRegiao = (regiaoEstado) => {
         let status = false
 
         estadosCidades.estados.forEach(function(estado) {
-            if (regiaoEstado == estado.regiao.toUpperCase) {
+            if (regiaoEstado == estado.regiao.toUpperCase() || regiaoEstado == estado.regiao.toLowerCase()) {
                 jRegiao = { uf: estado.sigla, descricao: estado.nome }
                 arrayRegiao.push(jRegiao)
                 status = true
